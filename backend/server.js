@@ -1,15 +1,23 @@
-const csv = require("csvtojson");
+"use strict";
 const path = require("path");
-const mongoose = require("mongoose");
+const express = require("express");
+const cors = require("cors");
+const app = express();
+const {
+  middlewareServerError,
+  middlewarePageNotFound,
+} = require("./Middleware/errorhandleing");
 
-const csvFilePath = path.resolve("./assets/allagents.csv");
+app.use(express.json());
+app.use(cors());
 
-csv()
-  .fromFile(csvFilePath)
-  .then((accountants) => {
-    accountants.map((accountant) => {
-      console.log(Object.values(accountant)[0].trim());
-      console.log(Object.values(accountant)[1].trim());
-      console.log(Object.values(accountant)[2].trim());
-    });
-  });
+app.use(middlewareServerError);
+app.use(middlewarePageNotFound);
+
+// app.use("/", express.static("frontend")); // serve main path as static dir
+// app.get("/", function (req, res) {
+//   // serve main path as static file
+//   res.sendFile(path.resolve("../frontend/index.html"));
+// });
+
+app.listen(process.env.PORT || 3000, () => console.log("Server is running..."));
