@@ -1,0 +1,31 @@
+{
+  "name": "mongo-mongoose-16",
+  "version": "1.0.0",
+  "description": "In computing, a database is an organized collection of data stored and accessed electronically from a computer system. [Database](https://en.wikipedia.org/wiki/Database)",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon ./backend/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Oryanab/mongo-mongoose-16.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Oryanab/mongo-mongoose-16/issues"
+  },
+  "homepage": "https://github.com/Oryanab/mongo-mongoose-16#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "csvtojson": "^2.0.10",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "mongoose": "^6.0.12"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
