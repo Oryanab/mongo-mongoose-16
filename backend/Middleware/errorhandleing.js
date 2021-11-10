@@ -2,6 +2,8 @@
 const express = require("express");
 const fs = require("fs");
 const path = require("path");
+const mongoose = require("mongoose");
+const { Agent } = require("../modgodb");
 
 /*
     error 500
@@ -31,7 +33,44 @@ function middlewarePageNotFound(req, res, next) {
   }
 }
 
+/*
+      check if city exist
+  */
+
+function middlewareCityNotFound(req, res, next) {
+  Agent.findOne({ city: req.params.city }).then((result) => {
+    if (result) {
+      next();
+    } else {
+      res.status(404).json({
+        message: "we have no agents from the city you have searched",
+        status: 404,
+      });
+    }
+  });
+}
+
+/*
+      check agent id exist
+      
+  */
+
+function middlewareAgentNotFound(req, res, next) {
+  Agent.findOne({ license_id: req.params.id }).then((result) => {
+    if (result) {
+      next();
+    } else {
+      res.status(404).json({
+        message: "we have no agents with the id you have searched",
+        status: 404,
+      });
+    }
+  });
+}
+
 module.exports = {
   middlewareServerError,
   middlewarePageNotFound,
+  middlewareCityNotFound,
+  middlewareAgentNotFound,
 };

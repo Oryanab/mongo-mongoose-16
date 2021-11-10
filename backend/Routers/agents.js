@@ -4,6 +4,10 @@ const apiRouter = express.Router();
 const path = require("path");
 const mongoose = require("mongoose");
 const { Agent } = require("../modgodb");
+const {
+  middlewareCityNotFound,
+  middlewareAgentNotFound,
+} = require("../Middleware/errorhandleing");
 
 apiRouter.get("/cities", (req, res) => {
   Agent.distinct("city")
@@ -29,19 +33,10 @@ apiRouter.get("/agents", (req, res) => {
     });
 });
 
-apiRouter.get("/agents/:city", (req, res) => {
+apiRouter.get("/agents/:city", middlewareCityNotFound, (req, res) => {
   Agent.find({ city: req.params.city })
     .then((dataBase) => {
-      if (dataBase.length > 0) {
-        res.json(dataBase);
-      } else {
-        res
-          .status(404)
-          .json({
-            message: "we have no agents from the city you have searched",
-            status: 404,
-          });
-      }
+      res.json(dataBase);
     })
     .catch((err) => {
       res
@@ -50,7 +45,7 @@ apiRouter.get("/agents/:city", (req, res) => {
     });
 });
 
-apiRouter.put("/agent/:id/edit", (req, res) => {
+apiRouter.put("/agent/:id/edit", middlewareAgentNotFound, (req, res) => {
   Agent.findOneAndUpdate(
     { license_id: req.params.id },
     {

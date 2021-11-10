@@ -1,7 +1,7 @@
-PUT http://localhost:3000/agent/3165149/edit
+PUT http://localhost:3000/agent/0/edit
 Content-Type: application/json
 
 {
-    "full_name": "כהן גלית כהן גלית",
+    "full_name": "כהן כהן גלית",
     "city": "גבעת אבני"
 }
