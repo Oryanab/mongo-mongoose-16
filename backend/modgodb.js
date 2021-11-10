@@ -31,8 +31,9 @@ const agentSchema = new Schema(
 
 const Agent = mongoose.model("Agent", agentSchema);
 
-const csvFilePath = path.resolve("./assets/allagents.csv");
+const csvFilePath = path.resolve("../assets/allagents.csv");
 
+/*
 csv()
   .fromFile(csvFilePath)
   .then((accountants) => {
@@ -51,5 +52,6 @@ csv()
           console.log("faild");
         });
     });
-    //mongoose.connection.close();
   });
+*/
+module.exports = { Agent };

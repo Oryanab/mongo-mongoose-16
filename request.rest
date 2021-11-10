@@ -1,0 +1,7 @@
+PUT http://localhost:3000/agent/3165149/edit
+Content-Type: application/json
+
+{
+    "full_name": "כהן גלית כהן גלית",
+    "city": "גבעת אבני"
+}

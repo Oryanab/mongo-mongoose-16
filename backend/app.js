@@ -8,6 +8,8 @@ const {
   middlewarePageNotFound,
 } = require("./Middleware/errorhandleing");
 
+const apiRouter = require("./Routers/agents");
+
 app.use(express.json());
 app.use(cors());
 
@@ -19,5 +21,6 @@ app.use(middlewarePageNotFound);
 //   // serve main path as static file
 //   res.sendFile(path.resolve("../frontend/index.html"));
 // });
+app.use("/", apiRouter);
 
 app.listen(process.env.PORT || 3000, () => console.log("Server is running..."));
